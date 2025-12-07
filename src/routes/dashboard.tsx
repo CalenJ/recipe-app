@@ -8,7 +8,7 @@ import "~/styling/dashboard.css";
 import "~/styling/recipe-browser.css"
 import "~/styling/recipe-editor.css";
 import "~/styling/taskbar.css"
-
+import { useAuth } from "~/components/auth/AuthProvider";
 import DeleteRecipe from "~/components/screens/DeleteRecipe";
 import TaskBar from "~/components/dashboard/taskbar";
 import RecipeEditor from "~/components/dashboard/recipeEditor";
