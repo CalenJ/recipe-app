@@ -7,7 +7,6 @@ import { AuthProvider } from "./components/auth/AuthProvider";
 
 export default function App() {
   return (
-    <AuthProvider>
       <Router
         root={props => (
           <MetaProvider>
@@ -17,6 +16,6 @@ export default function App() {
       >
         <FileRoutes />
       </Router>
-    </AuthProvider>
+
   );
 }
