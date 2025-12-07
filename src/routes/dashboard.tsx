@@ -1,5 +1,3 @@
-// src/routes/dashboard.tsx
-
 import { onMount, createSignal, Switch, Match, Show, createResource, createEffect } from "solid-js";
 import { supabase } from "~/supabase/supabase-client";
 import * as supabaseFn from "~/supabase/supabase-queries";
@@ -9,14 +7,12 @@ import "~/styling/recipe-browser.css"
 import "~/styling/recipe-editor.css";
 import "~/styling/taskbar.css"
 
-import { useNavigate } from "@solidjs/router"; // <-- For redirects
-import { useAuth } from "~/components/auth/AuthProvider"; // <-- Global auth
+import { useNavigate } from "@solidjs/router";
 
 import DeleteRecipe from "~/components/screens/DeleteRecipe";
 import TaskBar from "~/components/dashboard/taskbar";
 import RecipeEditor from "~/components/dashboard/recipeEditor";
 import RecipeViewer from "~/components/dashboard/recipeViewer";
-import RecipeSearchbar from "~/components/dashboard/searchbar";
 import RecipeBrowser from "~/components/dashboard/recipebrowser";
 import { setUserId, userId } from "~/stores/user";
 import SearchRecipe from "~/components/screens/SearchRecipe";
@@ -26,20 +22,10 @@ function displayDelay(ms: number) {
 }
 
 export default function Dashboard() {
-    // --- AUTH STATE & NAVIGATION ---
-    const { session, loading } = useAuth(); 
     const navigate = useNavigate();
 
-    // --- CLEAN OAUTH HASH TOKENS AFTER REDIRECT ---
-    onMount(() => {
-      // Only run if user is logged in
-      if (session()) {
-        const hash = window.location.hash;
-        if (hash.includes("access_token")) {
-          window.history.replaceState({}, document.title, "/dashboard");
-        }
-      }
-    });
+    const [session, setSession] = createSignal<any>(null);
+    const [loading, setLoading] = createSignal(true);
 
     const [selectedRecipeId, setSelectedRecipeId] = createSignal<number | null>(null);
     const [currentRecipe, setCurrentRecipe] = createSignal<any>(null);
@@ -47,29 +33,41 @@ export default function Dashboard() {
     const [activeView, setActiveView] = createSignal<ActiveView>("add");
     const [username, setUsername] = createSignal("");
 
-    // --- ROUTE GUARD ---
-    createEffect(() => {
-        if (!loading() && !session()) {
-            navigate('/login', { replace: true });
-        }
-    });
-
+    // --- ON MOUNT ---
     onMount(async () => {
-        const user = session()?.user; 
-        if (user) {
-            const currUN = await supabaseFn.ensureUserExists();
-            setUsername(currUN);
-            setUserId(user.id);
-            await loadSavedRecipes(user.id);
+        // Get the current Supabase session
+        const { data } = await supabase.auth.getSession();
+        const user = data.session?.user;
+
+        if (!user) {
+            // No session, redirect to login
+            navigate("/login", { replace: true });
+            return;
         }
+
+        // Set session state
+        setSession(data.session);
+
+        // Clean OAuth hash if it exists
+        if (window.location.hash.includes("access_token")) {
+            window.history.replaceState({}, document.title, "/dashboard");
+        }
+
+        // Ensure user exists in Supabase
+        const currUN = await supabaseFn.ensureUserExists();
+        setUsername(currUN);
+        setUserId(user.id);
+
+        // Load saved recipes
+        await loadSavedRecipes(user.id);
+
+        setLoading(false);
     });
 
     const handleSelectRecipe = (id: number | null) => {
         setSelectedRecipeId(id);
         setCurrentRecipe(null);
-        if (id !== null) {
-            setActiveView("view");
-        }
+        if (id !== null) setActiveView("view");
     }
 
     const handleNewRecipe = () => {
@@ -79,9 +77,7 @@ export default function Dashboard() {
     }
 
     const handleEditRecipe = () => {
-        if (selectedRecipeId()) {
-            setActiveView("edit");
-        }
+        if (selectedRecipeId()) setActiveView("edit");
     }
 
     const loadSavedRecipes = async (uid: string) => {
@@ -100,11 +96,10 @@ export default function Dashboard() {
         await loadSavedRecipes(userId());
     }
 
-    // --- CONDITIONAL RENDERING ---
     return (
-        <Show 
+        <Show
             when={!loading() && !!session()}
-            fallback={<div class="full-screen-loader" style="display: flex; justify-content: center; align-items: center; height: 100vh; font-size: 1.5em;">Verifying Access...</div>}
+            fallback={<div class="full-screen-loader" style="display:flex;justify-content:center;align-items:center;height:100vh;font-size:1.5em;">Verifying Access...</div>}
         >
             <main class="dashboard">
                 <div class="dashboard-main-region">
