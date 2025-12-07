@@ -1,0 +1,28 @@
+{
+  "name": "example-basic",
+  "type": "module",
+  "scripts": {
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start",
+    "version": "vinxi version"
+  },
+  "dependencies": {
+    "@kobalte/core": "^0.13.11",
+    "@solidjs/meta": "^0.29.4",
+    "@solidjs/router": "^0.15.0",
+    "@solidjs/start": "^1.1.0",
+    "@supabase/supabase-js": "^2.83.0",
+    "express": "^5.1.0",
+    "markdown-it": "^14.1.0",
+    "solid-js": "^1.9.5",
+    "supabase": "^2.54.11"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
+    "vinxi": "^0.5.8"
+  }
+}

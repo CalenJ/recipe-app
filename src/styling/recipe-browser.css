@@ -1,0 +1,46 @@
+.browsing-container {
+  padding: 1rem;
+}
+
+.browsing-item-content {
+  background: white;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+  box-shadow: var(--shadow);
+
+}
+
+.browsing-item-content:hover {
+  background: #f4f4f4;
+  transform: translateY(-2px);
+}
+
+.browsing-item-content img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+  object-fit: cover;
+  height: 200px;
+}
+
+.browsing-item-text h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  text-shadow: 1px 2px 2px lightgray;
+  text-transform: capitalize;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+}
+
+.browsing-item-text p {
+  font-style: italic;
+  font-size: 0.83rem;
+  font-weight: 200;
+  letter-spacing: 1.5px;
+  margin: 0;
+  margin-top: 0.8rem;
+}

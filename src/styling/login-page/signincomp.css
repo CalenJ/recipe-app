@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+
+.signin-pane{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    max-width: 400px;
+    max-height: 80vh;
+    padding: 2rem;
+    box-shadow: 20px 25px 40px 5px;
+    gap: 1rem;
+    background-color: white;
+    margin: 0 auto;
+}
+
+.google-cont{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin:0;
+    gap: 1.2rem;
+}
+
+#google-lbl{
+    font-size: 0.95rem;
+}
+
+
+#google-btn{
+    scale: 0.70;
+}
+
+#google-btn:hover{
+    cursor: pointer;
+}
+
+p{
+    color: black;
+    font-family: "Rowdies", serif;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-shadow: 2px 4px 2px lightgray;
+}
+
+#simp-cont{
+    margin: 5% 0 0 0;
+}
+
+#simp-lbl{
+    font-family: "Caprasimo", sans-serif;
+    font-weight: 400;
+    font-size: 1.8rem;
+    text-shadow: 2px 4px 2px lightgray;
+    letter-spacing: 6px;
+}
+
+#welcome{
+    font-size: 3.7rem;
+    text-shadow: 2px 5px 2px lightgray;
+    margin: 0;
+    font-family: "Caprasimo", sans-serif;
+    letter-spacing: 4px;
+    text-decoration: underline;
+}
+
+
+@media (max-height: 700px){
+    .signin-pane{
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        max-width: 50%;
+        max-height: 80vh;
+        padding: 1rem;
+        box-shadow: 20px 25px 40px 5px;
+        gap: 0.5rem;
+        background-color: white;
+        margin: 0 auto;
+    }
+
+    #simp-cont{
+    margin: 0.5% 0 0 0;
+}
+
+    #simp-lbl{
+        font-family: "Caprasimo", sans-serif;
+        font-weight: 400;
+        font-size: 1.5rem;
+        text-shadow: 2px 4px 2px lightgray;
+        letter-spacing: 6px;
+    }
+
+    #welcome{
+        font-size: 2.8rem;
+        text-shadow: 2px 5px 2px lightgray;
+        margin: 0;
+        font-family: "Caprasimo", sans-serif;
+        letter-spacing: 4px;
+        text-decoration: underline;
+    }
+
+    .google-cont{
+        display: flex;
+        flex-direction: column;
+        margin:0;
+        gap: 0.6rem;
+    }
+
+    #google-lbl{
+        font-size: 0.95rem;
+    }
+
+
+    #google-btn{
+        scale: 0.60;
+    }
+}

@@ -1,0 +1,91 @@
+/* ===========================
+   GLOBAL FONTS & VARIABLES
+   =========================== */
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&display=swap');
+
+:root {
+  --bg: white;
+  --bg-panel: #f4f4f4;
+  --bg-card: white;
+  --border: black;
+
+  --text: black;
+  --text-muted: #555;
+
+  --accent: black;
+  --accent2: #444;
+  --accent3: #222;
+
+  --shadow: 2px 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Force consistent typography */
+* {
+  font-family: "Rowdies", serif;
+  color: var(--text);
+}
+
+/* ===========================
+   DASHBOARD LAYOUT
+   =========================== */
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  height: 100vh;
+  overflow: hidden;
+  background: white;
+}
+
+.dashboard-main-region {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.dashboard-side-region {
+  width: 320px;
+  background: var(--bg-card);
+  border-left: 2px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  box-shadow: var(--shadow);
+}
+
+/* ===========================
+   NAV BAR
+   =========================== */
+
+.nav-bar {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: white;
+  border-bottom: 2px solid black;
+}
+
+.nav-bar button {
+  background: white;
+  border: 2px solid black;
+  padding: 0.5rem 1rem;
+  color: black;
+  font-family: "Caprasimo", sans-serif;
+  letter-spacing: 3px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  text-shadow: 2px 4px 2px lightgray;
+}
+
+.nav-bar button:hover {
+  background: #e5e5e5;
+}
+
+.load-recipe-screen{
+  font-size: 1.5rem;
+  text-align: center;
+  align-self: center;
+  letter-spacing: 4px;
+}

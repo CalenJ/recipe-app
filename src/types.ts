@@ -1,0 +1,1 @@
+export type ActiveView = | "view" | "edit" | "add" | "search" | "markdown" | "public" | "pdf-export" | "delete" | "settings";
